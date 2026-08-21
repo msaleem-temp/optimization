@@ -432,7 +432,7 @@ def objective(trial):
     post_pred = AsDiscrete(argmax=True, to_onehot=14)
     post_label = AsDiscrete(to_onehot=14)
 
-    num_epochs = 10 
+    num_epochs = 20 
     accumulation_steps = 2
     print_freq = 200
     best_mean_dice = -1.0 # Initialize to negative for maximization
