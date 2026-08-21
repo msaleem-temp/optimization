@@ -68,6 +68,7 @@ def fetch_datasets_locally(dataset_list, save_dir):
             os.rmdir(redundant_nested_dir)
             
     os.chdir(original_dir)
+    
     print("\n=== DOWNLOAD TEST FINISHED ===")
 
 
@@ -97,6 +98,6 @@ target_datasets = [
     "jrc_zf-cardiac-1"
 ]
 
-download_directory = "/kaggle/working/raw_data"
+download_directory = "" #directory or folder to save data locally.
 
 fetch_datasets_locally(target_datasets, download_directory)
