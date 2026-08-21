@@ -58,5 +58,7 @@ working_db = "/your directory/optuna_class_weights_run.db"
 previous_db_path = "/your directory/optuna_class_weights_run.db" # Note: First time this is executed, this db will not be present
 ```
 
-### Step 3: Optuna Checkpointing
-Ensure your script is configured to store the Optuna data database (`working_db`). This allows saving and resuming trials for multiple checkpoints seamlessly across runs.
+### Step 3: Optuna Configurations
+1. At the moment, epochs are 25, you can increase as you want.
+2. Gradient accumulation_steps = 2 and batch size is 4. So paraeters will be updated on gradients of 8 patches.
+3. Optuna Trails are 10
