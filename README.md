@@ -1,6 +1,6 @@
-# CellMap Segmentation Challenge: Setup and Optimization Guide
+# Setup and Optimization Guide
 
-This guide provides a complete, step-by-step workflow for downloading the required datasets and running the optimization pipeline for the CellMap Segmentation Challenge.
+This guide provides a complete, step-by-step workflow for downloading the required datasets and running the optimization pipeline.
 
 ## Part 1: Downloading the Data
 
@@ -50,12 +50,12 @@ data_root = "/your directory/raw_data" # Address where all 22 datasets are downl
 ZARR_MAP = build_zarr_map_modal_direct()
 
 # Training and validation JSONs
-train_json_path = "/mnt/voxelcell_vol1/patch_json/train.json"
-val_json_path = "/mnt/voxelcell_vol1/patch_json/val.json"
+train_json_path = "/your directory/patch_json/train.json"
+val_json_path = "/your directory/patch_json/val.json"
 
 # Optuna Database configurations
-working_db = "/root/optuna_class_weights_run.db"
-previous_db_path = "/mnt/voxelcell_vol1/backup/optuna_class_weights_run.db" # Note: First time this is executed, this db will not be present
+working_db = "/your directory/optuna_class_weights_run.db"
+previous_db_path = "/your directory/optuna_class_weights_run.db" # Note: First time this is executed, this db will not be present
 ```
 
 ### Step 3: Optuna Checkpointing
