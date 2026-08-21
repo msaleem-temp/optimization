@@ -22,6 +22,7 @@ from monai.metrics import DiceMetric
 from monai.transforms import AsDiscrete
 
 import collections
+import glob
 
 
 
@@ -34,9 +35,9 @@ But we are working on 13 classes (target_classes).
 
 """
 
-json_path = "/mnt/voxelcell_vol1/patch_json/all_centroids.json" # path of centroid.json that have all centroids/anchors
+json_path = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/all_centroids.json" # path of centroid.json that have all centroids/anchors
 
-save_path = "/mnt/voxelcell_vol1/patch_json/targets_classes.json" # path to store target_classes.json.
+save_path = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/targets_classes.json" # path to store target_classes.json.
 
 target_classes = {
     'endo', 'ld', 'lyso', 'mito', 'mt', 'np', 'nuc', 
@@ -60,8 +61,8 @@ print(f"Total target patches extracted: {len(target_patches)}")
 # ===================================================================================
 # Split into Train and Validation
 
-input_json = "/mnt/voxelcell_vol1/patch_json/targets_classes.json" # path where target_classes centroids are saved
-output_dir = "/mnt/voxelcell_vol1/patch_json/" # folder/directory where train.json and val.json will be saved
+input_json = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/targets_classes.json" # path where target_classes centroids are saved
+output_dir = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/patch_json/" # folder/directory where train.json and val.json will be saved
 
 # Load patches
 with open(input_json, 'r') as f:
@@ -309,11 +310,11 @@ def create_balanced_sampler(dataset):
 # --------------------------------------------------
 
 
-data_root="/mnt/voxelcell_vol1/raw_data" # folder address where all datasets are downloaded. 
-ZARR_MAP = build_zarr_map_modal_direct()
+data_root="/mnt/graid/codebases_other/cellmap-segmentation-challenge/data" # folder address where all datasets are downloaded. 
+ZARR_MAP = build_zarr_map_modal_direct(data_root)
 
-train_json_path = "/mnt/voxelcell_vol1/patch_json/train.json" # train.json path such as "/mnt/voxelcell_vol1/patch_json/train.json"
-val_json_path = "/mnt/voxelcell_vol1/patch_json/val.json"
+train_json_path = "/mnt/graaid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/patch_json/train.json" # train.json path such as "/mnt/voxelcell_vol1/patch_json/train.json"
+val_json_path = "/mnt/graaid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/patch_json/val.json"
 
 train_dataset = Patches(train_path, zarr_map=ZARR_MAP, patch_dim=128, max_jitter=48)
 val_dataset = Patches(val_path, zarr_map=ZARR_MAP, patch_dim=128, max_jitter=0) # Static for validation
@@ -361,10 +362,10 @@ print(f"Training on device: {device} with {num_gpus} GPUs")
 
 
 # --- OPTUNA DATABASE SETUP ---
-working_db = "/root/optuna_class_weights_run.db"
+working_db = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/optuna_class_weights_run.db"
 
 
-previous_db_path = "/mnt/voxelcell_vol1/backup/optuna_class_weights_run.db" # First time when it will executed this db will not be present.
+previous_db_path = "/mnt/graid/codebases_other/cellmap-segmentation-challenge/saleem/optimization/optuna_class_weights_run.db" # First time when it will executed this db will not be present.
 
 if os.path.exists(previous_db_path) and not os.path.exists(working_db):
     print("Found existing database. Copying to root directory to resume...")
