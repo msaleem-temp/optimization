@@ -1,13 +1,4 @@
 
-    
-!pip install pydantic-zarr
-!pip install xarray-ome-ngff
-
-!pip install monai
-!pip install optuna
-
-
-
 import os
 import json
 import zarr
