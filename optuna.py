@@ -533,7 +533,7 @@ study = optuna.create_study(
     pruner=optuna.pruners.MedianPruner(n_warmup_steps=3)
 )
 
-study.optimize(objective, n_trials=5) # Adjust number of trails 
+study.optimize(objective, n_trials=10) # Adjust number of trails 
 
 
 
